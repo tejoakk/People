@@ -33,34 +33,31 @@ class ControllerTest {
         Assertions.assertEquals(Arrays.<People>asList(new People("test1", "last", "middle", "04-06-2020", "imageurl")), result);
     }
 
-//    @Test
-//    void testNewPerson() {
-//        People result = controller.newPerson(new People("firstName", "lastName", "middleName", "dob", "imageurl"));
-//        verify(repository).save(any());
-//        Assertions.assertEquals(repository.findAll().size(),1);
-//    }
-
     @Test
     void testGetPerson() {
         when(repository.findById(anyLong())).thenReturn(java.util.Optional.of(new People("test1", "last", "middle", "04-06-2020", "imageurl")));
         People result = controller.getPerson(Long.valueOf(1));
         Assertions.assertEquals(new People("test1", "last", "middle", "04-06-2020", "imageurl"), result);
     }
+
     @Test
     public void testGetPersonException() {
-        Assertions.assertThrows(PeopleNotFoundException.class, () ->{controller.getPerson(Long.valueOf(1));});
+        Assertions.assertThrows(PeopleNotFoundException.class, () -> {
+            controller.getPerson(Long.valueOf(1));
+        });
     }
 
-    @Test
-    void testGetByName() {
-        when(repository.findByFirstNameIgnoreCase(anyString())).thenReturn(java.util.Optional.of(new People("firstName", "lastName", "middleName", "dob", "imageurl")));
-        People result = controller.getByName("FirstName");
-        Assertions.assertEquals(new People("firstName", "lastName", "middleName", "dob", "imageurl"), result);
-    }
+//    @Test
+//    void testGetByName() {
+//        when(repository.findByFirstNameIgnoreCase(anyString())).thenReturn(java.util.Optional.of(new People("firstName", "lastName", "middleName", "dob", "imageurl")));
+//        People result = controller.getByName("FirstName");
+//        Assertions.assertEquals(new People("firstName", "lastName", "middleName", "dob", "imageurl"), result);
+//    }
 
-    @Test
-    public void testGetByNameException() {
-        Assertions.assertThrows(PeopleNotFoundException.class, () ->{controller.getByName("name");});
-    }
+//    @Test
+//    public void testGetByNameException() {
+//        Assertions.assertThrows(PeopleNotFoundException.class, () ->{controller.getByName("name");});
+//    }
 }
+
 

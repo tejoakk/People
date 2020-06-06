@@ -29,22 +29,18 @@ class Controller {
         return repository.findAll();
     }
 
-//    @PostMapping("/people")
-//    People newPerson(@RequestBody People newPerson) {
-//        return repository.save(newPerson);
-//    }
-//
     @GetMapping("/people/{id}")
     People getPerson(@PathVariable Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new PeopleNotFoundException(id));
     }
 
-    @GetMapping("/people/")
-    People getByName(@RequestParam String name) {
-        return repository.findByFirstNameIgnoreCase(name)
-                .orElseThrow(() -> new PeopleNotFoundException(name));
-
-    }
+    //TODO: for now using react text filter instead of search api
+//    @GetMapping("/people/")
+//    People getByName(@RequestParam String name) {
+//        return repository.findByFirstNameIgnoreCase(name)
+//                .orElseThrow(() -> new PeopleNotFoundException(name));
+//
+//    }
 
 }
