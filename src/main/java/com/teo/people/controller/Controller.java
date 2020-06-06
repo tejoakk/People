@@ -13,6 +13,7 @@ import java.util.List;
  * not
  * implementing the custom business logic in service classes
  */
+@CrossOrigin
 @RestController
 class Controller {
 
@@ -33,15 +34,15 @@ class Controller {
 //        return repository.save(newPerson);
 //    }
 //
-//    @GetMapping("/people/{id}")
-//    People getPerson(@PathVariable Long id) {
-//        return repository.findById(id)
-//                .orElseThrow(() -> new PeopleNotFoundException(id));
-//    }
+    @GetMapping("/people/{id}")
+    People getPerson(@PathVariable Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new PeopleNotFoundException(id));
+    }
 
-    @GetMapping("/people/{name}")
-    People getByName(@PathVariable String name) {
-        return repository.findByFirstName(name)
+    @GetMapping("/people/")
+    People getByName(@RequestParam String name) {
+        return repository.findByFirstNameIgnoreCase(name)
                 .orElseThrow(() -> new PeopleNotFoundException(name));
 
     }

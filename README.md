@@ -7,8 +7,9 @@ Spring data
 
 
 ### Running application
-
+./mvnw spring-boot:run
 
 ### Tests and Coverage
+./mvnw test
 
 

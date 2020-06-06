@@ -26,7 +26,7 @@ public class PeopleRepositoryTest {
     public void testFindByName() {
         People mock = new People("Michelle1", "Dessler1", "", "02/07/1977", "https:\\/\\/www.themealdb.com\\/images\\/media\\/meals\\/rvypwy1503069308.jpg");
         entityManager.persist(mock);
-        Optional<People> person = repository.findByFirstName("Michelle1");
+        Optional<People> person = repository.findByFirstNameIgnoreCase("Michelle1");
         assertEquals(person, mock);
     }
 }

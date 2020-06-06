@@ -40,21 +40,21 @@ class ControllerTest {
 //        Assertions.assertEquals(repository.findAll().size(),1);
 //    }
 
-//    @Test
-//    void testGetPerson() {
-//        when(repository.findById(anyLong())).thenReturn(java.util.Optional.of(new People("test1", "last", "middle", "04-06-2020", "imageurl")));
-//        People result = controller.getPerson(Long.valueOf(1));
-//        Assertions.assertEquals(new People("test1", "last", "middle", "04-06-2020", "imageurl"), result);
-//    }
-//    @Test
-//    public void testGetPersonException() {
-//        Assertions.assertThrows(PeopleNotFoundException.class, () ->{controller.getPerson(Long.valueOf(1));});
-//    }
+    @Test
+    void testGetPerson() {
+        when(repository.findById(anyLong())).thenReturn(java.util.Optional.of(new People("test1", "last", "middle", "04-06-2020", "imageurl")));
+        People result = controller.getPerson(Long.valueOf(1));
+        Assertions.assertEquals(new People("test1", "last", "middle", "04-06-2020", "imageurl"), result);
+    }
+    @Test
+    public void testGetPersonException() {
+        Assertions.assertThrows(PeopleNotFoundException.class, () ->{controller.getPerson(Long.valueOf(1));});
+    }
 
     @Test
     void testGetByName() {
-        when(repository.findByFirstName(anyString())).thenReturn(java.util.Optional.of(new People("firstName", "lastName", "middleName", "dob", "imageurl")));
-        People result = controller.getByName("firstName");
+        when(repository.findByFirstNameIgnoreCase(anyString())).thenReturn(java.util.Optional.of(new People("firstName", "lastName", "middleName", "dob", "imageurl")));
+        People result = controller.getByName("FirstName");
         Assertions.assertEquals(new People("firstName", "lastName", "middleName", "dob", "imageurl"), result);
     }
 
